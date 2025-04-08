@@ -10,7 +10,7 @@ class Game
     @turn = 1
   end
 
-  def pick_initial_attacker
+  def pick_initial_attackera
     [@player1, @player2].sample
   end
 
@@ -18,7 +18,7 @@ class Game
     player == @player1 ? @player2 : @player1
   end
 
-  def play(attacker, defender)
+  def play(attacker, defender, continue=false)
     while attacker.alive? && defender.alive?
       puts "\n--- Turn #{turn} ---"
       attacker.attack(defender)
@@ -27,11 +27,13 @@ class Game
         attacker, defender = defender, attacker # Swap roles
       else
         puts "\n#{attacker.name} wins!"
-        break
+        return attacker
       end
       
-      puts "\nPress Enter to continue the game..."
-      $stdin.gets # Wait for Enter key input. $stdin.gets reads from standard input.
+      if continue
+        puts "\nPress Enter to continue the game..."
+        $stdin.gets # Wait for Enter key input. $stdin.gets reads from standard input.
+      end
   
       @turn += 1
     end
