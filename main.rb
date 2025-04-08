@@ -1,31 +1,10 @@
-class Player
-  attr_accessor :name, :hp
+#import the Player class from player.rb
+require_relative 'player' # This line imports the Player class from player.rb
 
-  def initialize(name, hp = 20)
-    @name = name
-    @hp = hp
-  end
-
-  def roll_dice
-    rand(1..6)
-  end
-
-  def attack(opponent)
-    attack_roll = roll_dice
-    defense_roll = opponent.roll_dice
-    damage = [attack_roll - defense_roll, 0].max
-
-    opponent.hp -= damage
-    puts "#{@name} attacks #{opponent.name} with #{attack_roll}. #{opponent.name} defends with #{defense_roll}."
-    puts "#{opponent.name} takes #{damage} damage. #{opponent.name}'s HP: #{opponent.hp}"
-
-    damage
-  end
-
-  def alive?
-    @hp > 0
-  end
-end
+# The game method initializes two players and simulates a turn-based attack game
+# It randomly selects an attacker and a defender, and alternates turns until one player is defeated
+# The game continues until one of the players' HP reaches 0 or below
+# The game ends with a message indicating the winner
 
 def game(player1_name = "Player 1", player2_name="Player 2")
   player1 = Player.new(player1_name)
@@ -39,6 +18,7 @@ def game(player1_name = "Player 1", player2_name="Player 2")
 
   turn = 1 # Initialize turn counter
   
+  # Game loop it iterates until one player is defeated
   while attacker.alive? && defender.alive?
     puts "\n--- Turn #{turn} ---"
     attacker.attack(defender)
@@ -59,4 +39,4 @@ def game(player1_name = "Player 1", player2_name="Player 2")
   puts "\nGame Over!"
 end
 
-game("Alice", "Bob")
+game("Alice", "Bob") # You can change the player names here
