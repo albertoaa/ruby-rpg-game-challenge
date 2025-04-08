@@ -21,7 +21,7 @@ def main()
 
   turn = 1 # Initialize turn counter
   
-  game.play(attacker, defender)
+  game.play(attacker, defender, true)
 
   puts "\nGame Over!"
 end

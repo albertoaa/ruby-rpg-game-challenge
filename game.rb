@@ -10,7 +10,7 @@ class Game
     @turn = 1
   end
 
-  def pick_initial_attackera
+  def pick_initial_attacker
     [@player1, @player2].sample
   end
 
